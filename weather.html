@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
+      .vh{min-height: 100vh;}
+    </style>
+
+    <title>Weather API</title>
+  </head>
+  <body>
+
+
+ 
+
+      <section class="weather-box-section">
+        <div class="container">
+          <div class="row justify-content-center vh align-items-center">
+            <div class="col-sm-12 text-white bg-dark p-5 text-center ">
+              <div class="weather"> 
+                  <input type="text" id="city" class="form-control">
+                  <input type="submit" id="click" class="btn btn-danger">
+              
+                <h1>Weather <span id="temp"></span><sup>0</sup>C</h1>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+      $("#click").click(function(){
+        var city = $("#city").val();
+
+        $.ajax({
+          url:'http://api.apixu.com/v1/current.json?key=9a00ecda1bd844b898e64238180509&q='+city,
+          datatype:"json",
+          method:"GET",
+          success: function(data){
+            $("#temp").text(data.current.temp_c);
+            console.log(data.current.temp_c);
+          },
+          error:function(){
+
+          }
+        });
+      })
+    </script>
+
+
+
+  </body>
+</html>
